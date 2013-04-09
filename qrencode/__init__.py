@@ -1,5 +1,8 @@
 from qr_encode import encode as _encode
-import Image
+try:
+    from PIL import Image
+except:
+    import Image
 
 
 QR_ECLEVEL_L = 0
