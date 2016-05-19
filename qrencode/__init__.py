@@ -48,7 +48,10 @@ def encode(data, version=0, level=QR_ECLEVEL_L, hint=QR_MODE_8,
     else:
         version, size, data = _encode(data, version, level, hint, False)
     
-    im = Image.fromstring('L', (size, size), data)
+    try:
+        im = Image.frombytes('L', (size, size), data)
+    except Exception as e:
+        im = Image.fromstring('L', (size, size), data)
     return (version, size, im)
 
 def encode_scaled(data, size, version=0, level=QR_ECLEVEL_L, hint=QR_MODE_8,
